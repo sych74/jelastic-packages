@@ -177,7 +177,6 @@ actions:
 
   setupInstance:
     - cmd[${this.id}]: |-
-        sed -i "s/server_id.*/server_id = $(echo '${env.region}' | md5sum | grep -Eo "[[:digit:]]{3}" | head -n1)/" /etc/mysql/conf.d/galera.cnf
         sed -i "s/bind-address.*/bind-address = node${this.id}/" /etc/mysql/conf.d/galera.cnf
         sed -i "s/report_host.*/report_host = node${this.id}/" /etc/mysql/conf.d/galera.cnf
         sed -i "s/wsrep_cluster_name.*/wsrep_cluster_name = galera-cluster/" /etc/mysql/conf.d/galera.cnf
