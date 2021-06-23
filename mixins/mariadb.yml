@@ -171,10 +171,35 @@ actions:
           id: "${@i.id}"
     - cmd[${nodes.sqldb.master.id}]: "/etc/init.d/mysql stop; sleep 5; galera_new_cluster;"
       user: root
+    - cmd[${nodes.sqldb.master.id}]: |-
+        for i in {1..120}; do
+          if (iptables -nL INPUT | grep -q ':4444$'); then
+            echo "PORT 4444 OUVERT !"
+            jem service restart
+            exit $?
+          else
+            echo "PORT 4444 PAS ENCORE OUVERT ($i/120)"
+          fi
+          sleep 1
+        done
+        echo "PORT 4444 NON OUVERT"
+        exit 1
+      user: root
     - forEach(n:nodes.sqldb):
         if (!${@n.ismaster}):
-          cmd[${@n.id}]: "jem service restart"
-
+          cmd[${@n.id}]: |-
+            for i in {1..120}; do
+              if (sudo iptables -nL INPUT | grep -q ':4444$'); then
+                echo "PORT 4444 OUVERT !"
+                jem service restart
+                exit $?
+              else
+                echo "PORT 4444 PAS ENCORE OUVERT ($i/120)"
+              fi
+              sleep 1
+            done
+            echo "PORT 4444 NON OUVERT"
+            exit 1
   setupInstance:
     - cmd[${this.id}]: |-
         sed -i "s/server_id.*/server_id = $(echo '${env.region}' | md5sum | grep -Eo "[[:digit:]]{3}" | head -n1)/" /etc/mysql/conf.d/galera.cnf
