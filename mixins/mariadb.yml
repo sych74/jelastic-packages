@@ -32,10 +32,6 @@ actions:
         logrotate -f /etc/logrotate.d/mysql
         curl -fsSL ${globals.repoRootUrl}/assets/database/mysql-init.d > /etc/init.d/mysql
       user: root
-    - if ("${response.errOut}" != ""):
-        - return:
-            type: error
-            message: "An error occurred during mariadb setup."
     - if (nodes.sqldb.length > 1):
         - installGaleraCluster
     - else:
