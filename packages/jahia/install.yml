@@ -73,6 +73,11 @@ onBeforeInstall: |
   }
   nodes.push(node_haproxy);
 
+  var jahiaDockerTag = "${settings.productVersion}";
+  if ("${settings.dockerTagSuffix}" != "") {
+    jahiaDockerTag += "_${settings.dockerTagSuffix}"
+  }
+
   node_cp = {
     "displayName": "Browsing",
     "count": "${settings.browsingCount}",
@@ -109,7 +114,7 @@ onBeforeInstall: |
   }
   if (dockerImage == "undefined") {
     node_cp['nodeType'] = "jahia";
-    node_cp['tag'] = "${settings.productVersion}";
+    node_cp['tag'] = jahiaDockerTag;
   } else {
     node_cp['image']  = dockerImage;
   }
@@ -152,7 +157,7 @@ onBeforeInstall: |
   }
   if (dockerImage == "undefined") {
     node_proc['nodeType'] = "jahia";
-    node_proc['tag'] = "${settings.productVersion}";
+    node_proc['tag'] = jahiaDockerTag;
   } else {
     node_proc['image']  = dockerImage;
   }
@@ -260,6 +265,9 @@ settings:
       inputType: hidden
       type: string
       default: 'undefined'
+    - name: dockerTagSuffix
+      type: string
+      caption: Docker tag suffix
     - name: vaultRoleId
       type: string
       caption: Vault Role Id
