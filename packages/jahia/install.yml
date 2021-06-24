@@ -82,7 +82,6 @@ nodes: definedInOnBeforeInstall
 # --Events --
 onInstall:
   - log: "## Beginning installation of Jahia"
-  - setJournaldLimit
   - installDatabase:
       user: ${globals.db_user}
       password: ${globals.db_pass}
