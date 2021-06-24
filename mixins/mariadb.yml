@@ -169,7 +169,7 @@ actions:
       user: root
     - forEach(n:nodes.sqldb):
         if (!${@n.ismaster}):
-          cmd[${@n.id}]: "jem service restart"
+          cmd[${@n.id}]: "sudo /etc/init.d/mysql restart"
 
   setupInstance:
     - cmd[${this.id}]: |-
