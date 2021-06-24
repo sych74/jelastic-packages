@@ -48,12 +48,6 @@ onBeforeInstall: |
         "DB_PASS": "${globals.db_pass}",
         "_PROVIDE": "Database",
         "_ROLE": "galera"
-      },
-    "distribution": {
-        "mode": "STRICT",
-        "zones": [
-            {high_iops: false}
-        ]
       }
   }
   nodes.push(node_mariadb);
