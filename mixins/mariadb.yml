@@ -25,8 +25,8 @@ actions:
         mysql -e "set global key_buffer_size = 128*1024*1024; set global myisam_sort_buffer_size = 128*1024*1024; set global wsrep_sst_auth = 'mysql:'; set global wsrep_sst_method = 'mariabackup';"
         echo "/etc/init.d/mysql" >> /etc/jelastic/redeploy.conf
         wget -qO /etc/logrotate.d/mysql ${globals.repoRootUrl}/assets/database/logrotate_mysql
-        wget -qP /var/lib/jelastic/customizations ${globals.repoRootUrl}/assets/database/jahia_override.lib
-        chown -R mysql:mysql /var/lib/jelastic/customizations
+        #wget -qP /var/lib/jelastic/customizations ${globals.repoRootUrl}/assets/database/jahia_override.lib
+        #chown -R mysql:mysql /var/lib/jelastic/customizations
         logrotate -f /etc/logrotate.d/mysql
         curl -fsSL ${globals.repoRootUrl}/assets/database/mysql-init.d > /etc/init.d/mysql
       user: root
