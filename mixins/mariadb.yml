@@ -38,16 +38,6 @@ actions:
         # Trigger mariabackup installation
         - cmd [sqldb]: service mysql restart
           user: root
-    - log: "## Create DX's Jahia database and user"
-    - cmd[${nodes.sqldb.master.id}]: |-
-        mysql -e "CREATE DATABASE IF NOT EXISTS jahia CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-        mysql -e "grant all privileges on jahia.* to '${this.user}'@'%' identified by '${this.password}';"
-        mysql -e "flush privileges;"
-      user: root
-    - if ("${response.errOut}" != ""):
-        - return:
-            type: error
-            message: "An error occurred when creating jahia database."
 
   createDataDogUser:
     - log: "## Create Datadog database user"
