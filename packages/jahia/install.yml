@@ -60,12 +60,6 @@ onBeforeInstall: |
         "_ROLE": db_scheme,
         "envName": "${settings.shortdomain}",
         "jahia_cfg_operatingMode": "${settings.mode}",
-      },
-    "distribution": {
-        "mode": "STRICT",
-        "zones": [
-            {high_iops: false}
-        ]
       }
   }
   nodes.push(node_mariadb);
