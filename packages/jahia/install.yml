@@ -47,7 +47,7 @@ onBeforeInstall: |
         "DB_USER": "${globals.db_user}",
         "DB_PASS": "${globals.db_pass}",
         "_PROVIDE": "Database",
-        "_ROLE": galera
+        "_ROLE": "galera"
       },
     "distribution": {
         "mode": "STRICT",
