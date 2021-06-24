@@ -46,7 +46,7 @@ onBeforeInstall: |
     "nodeType": "${globals.dbnodeType}",
     "nodeGroup": "sqldb",
     "tag": "10.4.13",
-    "count": db_count,
+    "count": 6,
     "cloudlets": db_cloudlets,
     "isSLBAccessEnabled": false,
     "env": {
