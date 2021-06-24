@@ -29,7 +29,7 @@ skipNodeEmails: true
 
 mixins:
   - ../../mixins/common.yml
-   - ../../mixins/mariadb.yml
+  - ../../mixins/mariadb.yml
 
 onBeforeInstall: |
   nodes = []
