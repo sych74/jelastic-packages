@@ -173,6 +173,7 @@ actions:
             message: "An error occurred during galera cluster setup."
 
   initialSetup:
+    - cmd[sqldb]: jem passwd set -p abcABC123
     - setNodeDisplayName[sqldb]: Galera
     - setGlobalRepoRootUrl
     - cmd[sqldb]: |-
