@@ -167,6 +167,7 @@ actions:
         sed -i "s/report_host.*/report_host = node${this.id}/" /etc/mysql/conf.d/galera.cnf
         sed -i "s/wsrep_cluster_name.*/wsrep_cluster_name = galera-cluster/" /etc/mysql/conf.d/galera.cnf
         sed -i "s/wsrep_node_name.*/wsrep_node_name = node${this.id}/" /etc/mysql/conf.d/galera.cnf
+        sed -i "s/wsrep_node_address.*/wsrep_node_address = $(hostname | cut -d'-' -f 1)/" /etc/mysql/conf.d/galera.cnf
     - if ("${response.errOut}" != ""):
         - return:
             type: error
