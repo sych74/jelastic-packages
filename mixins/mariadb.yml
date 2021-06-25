@@ -153,7 +153,7 @@ actions:
     - forEach(i:nodes.sqldb):
         setupInstance:
           id: "${@i.id}"
-    - cmd[${nodes.sqldb.master.id}]: "/etc/init.d/mysql stop; sleep 5; galera_new_cluster; service httpd restart""
+    - cmd[${nodes.sqldb.master.id}]: "/etc/init.d/mysql stop; sleep 5; galera_new_cluster; service httpd restart"
       user: root
  
   setupInstance:
