@@ -166,10 +166,8 @@ onBeforeInstall: |
     "cloudlets": db_cloudlets,
     "isSLBAccessEnabled": false,
     "env": {
-        "ADMINPANEL_ENABLED": false,
         "DATADOGAPIKEY": "${settings.ddogApikey}",
         "DB_USER_DATADOG": "${globals.db_user_datadog}",
-        "PHPMYADMIN_ENABLED": false,
         "DB_USER": "${globals.db_user}",
         "DB_PASS": "${globals.db_pass}",
         "_PROVIDE": "Database",
