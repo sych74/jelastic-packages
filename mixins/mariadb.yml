@@ -173,7 +173,7 @@ actions:
             message: "An error occurred during galera cluster setup."
 
   initialSetup:
-    - cmd[${this.id}]: |-
+    - cmd[sqldb]: |-
         wget https://raw.githubusercontent.com/sych74/mysql-cluster/v2.4.0/scripts/setupUser.sh -O ~/setupUser.sh &>> /var/log/run.log
         bash ~/setupUser.sh test abcABC123 &>> /var/log/run.log
       user: root
